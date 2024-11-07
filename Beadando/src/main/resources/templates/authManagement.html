@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>AdminEdit</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="container-fluid pt-3 shadow-lg">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <div class="nav-logo">
+        <h2 style=" text-shadow: 2px 2px #5F9EA0;">Jogosultság kezelés</h2>
+      </div>
+      <div class="ms-auto">
+        <a type="button" class="btn btn-outline-primary me-2" title="Kép galléria" th:href="@{/imageGallery}">
+          Kép galléria
+        </a>
+        <a type="button" class="btn btn-outline-primary me-2" title="Kijelentkezés" th:href="@{/logout}">
+          Kijelentkezés
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="mt-4 d-flex justify-content-center">
+  <div class="container-fluid">
+    <table class="table table-bordered text-center">
+      <thead>
+      <tr>
+        <th scope="col">Név</th>
+        <th scope="col">Kép formátumok amiket láthat</th>
+        <th scope="col">Műveletek</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="user : ${users}">
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+        <td>
+          <a type="button" class="btn btn-primary me-3"
+             th:href="@{/user/editForm/{id}(id=${user.id})}">
+            Módosítás
+          </a>
+          <a type="button" class="btn btn-danger"
+             th:href="@{/user/delete/{id}(id=${user.id})}">
+            Törlés
+          </a>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2."></script>
+
+
+</html>

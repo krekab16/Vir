@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container h-100">
+    <div class="container my-5">
+        <div class="card-body2 mx-auto">
+            <div class="row mx-0 align-items-center">
+                <div class="col-md-6 p-2 p-sm-5 border-end ">
+                    <h3 class="mb-4 mb-sm-5 text-center">Helló!</h3>
+                    <div class="text-center fs-6">Ha még nincs fiókod, akkor regisztrálj.</div>
+                    <div class="d-flex d-sm-block d-none text-center">
+                        <img width="300" class="img-fluid" src="/assets/login.png" alt="image">
+                    </div>
+                </div>
+                <div class="col-md-6 p-2 p-sm-5">
+                    <h3 class="me-3 text-center">Regisztráció</h3>
+                    <!--/*@thymesVar id="contactUser" type="com.example.Beadando.model.ContactUser"*/-->
+                    <form action="#" th:action="@{/registration}" method="post" th:object="${contactUser}">
+                        <div class="form-group mb-4 fs-6">
+                            <label for="username">Felhasználónév</label>
+                            <input type="text" name="username" id="username" class="form-control" th:field="*{username}">
+                        </div>
+                        <div class="form-group mb-4 fs-6">
+                            <label for="email">Email cím</label>
+                            <input type="email" name="email" id="email" class="form-control" th:field="*{email}">
+                        </div>
+                        <div class="form-group mb-4 fs-6">
+                            <label for="password">Jelszó</label>
+                            <input type="password" name="password" id="password" class="form-control" th:field="*{password}">
+
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Regisztráció</button>
+                    </form>
+                    <div class="row">
+                        <div class="col-md-12 mt-2 text-center mt-3 h5">
+                            <div class="text-center">
+                                <p>Már van fiókod? <a th:href="@{/login}">Jelentkezz be! </a></p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2."></script>
+

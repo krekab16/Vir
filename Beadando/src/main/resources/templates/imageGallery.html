@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<header class="container-fluid pt-3 shadow-lg">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <div class="nav-logo">
+        <h2 style="text-shadow: 2px 2px #5F9EA0;">Kép galléria</h2>
+      </div>
+      <div class="ms-auto">
+        <a type="button" class="btn btn-outline-primary me-2" title="Kijelentkezés" th:href="@{/logout}">
+          Kijelentkezés
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="container h-100">
+  <div class="container-fluid">
+    <div class="row my-5">
+      <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 my-3">
+          <div class="card card-hover rounded-4 border-0 h-100">
+            <div class="card-body position-relative pt-3 px-3">
+              <div class="d-flex flex-row">
+                <div class="mb-1 fs-xs fw-bold text-uppercase">
+                  <h2>Kép</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2."></script>
+
+
+</html>

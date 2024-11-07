@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditForm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header class="container-fluid pt-3 shadow-lg">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <div class="nav-logo">
+                <h2 style="text-shadow: 2px 2px #5F9EA0;">Kép galléria</h2>
+            </div>
+            <div class="ms-auto">
+                <a  type="button" class="btn btn-outline-primary me-2" title="Kijelentkezés" th:href="@{/logout}">
+                    Kijelentkezés
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <!--/*@thymesVar id="user" type="com.example.Beadando.model.User"*/-->
+    <form action="#" th:action="@{/user/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
+        <div class="form-group mb-4 fs-6">
+            <label for="name">Név</label>
+            <input type="text" name="name" id="name" class="form-control" th:field="*{name}">
+        </div>
+        <div class="form-group mb-4 fs-6">
+            <label for="email">Email cím</label>
+            <input type="email" name="email" id="email" class="form-control" th:field="*{email}">
+        </div>
+        <div class="form-group mb-4 fs-6">
+            <label for="password">Formátum</label>
+            <input type="password" name="password" id="password" class="form-control" th:field="*{password}">
+
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mt-4">Mentés</button>
+    </form>
+
+</div>
+
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2."></script>
+
+</html>
