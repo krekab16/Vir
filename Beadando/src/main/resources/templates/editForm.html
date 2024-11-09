@@ -22,21 +22,21 @@
 </header>
 
 <div class="container">
-    <!--/*@thymesVar id="user" type="com.example.Beadando.model.User"*/-->
-    <form action="#" th:action="@{/user/edit/{id}(id=${user.id})}" method="post" th:object="${user}">
+    <!--/*@thymesVar id="contactUser" type="com.example.Beadando.model.ContactUser"*/-->
+    <form action="#" th:action="@{/admin/edit/{id}(id=${contactUser.id})}" method="post" th:object="${contactUser}">
         <div class="form-group mb-4 fs-6">
-            <label for="name">Név</label>
-            <input type="text" name="name" id="name" class="form-control" th:field="*{name}">
+            <label for="username">Név</label>
+            <input type="text" name="username" id="username" class="form-control" th:field="*{username}" />
         </div>
         <div class="form-group mb-4 fs-6">
             <label for="email">Email cím</label>
-            <input type="email" name="email" id="email" class="form-control" th:field="*{email}">
+            <input type="email" name="email" id="email" class="form-control" th:field="*{email}" />
         </div>
-        <div class="form-group mb-4 fs-6">
-            <label for="password">Formátum</label>
-            <input type="password" name="password" id="password" class="form-control" th:field="*{password}">
+<!--        <div class="form-group mb-4 fs-6">-->
+<!--            <label for="password">Formátum</label>-->
+<!--            <input type="password" name="password" id="password" class="form-control" th:field="*{password}" />-->
 
-        </div>
+<!--        </div>-->
         <button type="submit" class="btn btn-primary w-100 mt-4">Mentés</button>
     </form>
 

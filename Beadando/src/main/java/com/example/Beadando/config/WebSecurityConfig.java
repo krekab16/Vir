@@ -1,17 +1,14 @@
 package com.example.Beadando.config;
 
+import com.example.Beadando.CustomLoginSuccessHandler;
 import com.example.Beadando.service.ContactUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -35,23 +32,25 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, CustomLoginSuccessHandler customLoginSuccessHandler) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/assets/**").permitAll()
-                        .requestMatchers( "/registration").permitAll()
-                        .requestMatchers( "/user/imageGallery").permitAll()
+                        .requestMatchers("/assets/**", "/images/**", "/uploads/**").permitAll()
+                        .requestMatchers("/registration").permitAll()
+                        .requestMatchers("/imageGallery").hasAnyRole("USER_JPEG","USER_PNG","USER_GIF")
+                        .requestMatchers("/authManagement").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
-                        .successForwardUrl("/user")
+                        .successHandler(customLoginSuccessHandler)
                 )
                 .logout((logout) -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login")
                 );
+
 
 
         return http.build();

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Home</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -23,16 +24,15 @@
 </header>
 <div class="container h-100">
   <div class="container-fluid">
-    <div class="row my-5">
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Képek</h1>
       <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 col-xl-3 my-3">
-          <div class="card card-hover rounded-4 border-0 h-100">
-            <div class="card-body position-relative pt-3 px-3">
-              <div class="d-flex flex-row">
-                <div class="mb-1 fs-xs fw-bold text-uppercase">
-                  <h2>Kép</h2>
-                </div>
-              </div>
+        <div th:each="image : ${images}" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <div class="card">
+            <!--/*@thymesVar id="image" type="com.example.Beadando.model.Image"*/-->
+            <img th:src="@{/uploads/{imageName}(imageName=${image.name})}" class="card-img-top" alt="image" style="width: 100%; height: auto;">
+            <div class="card-body">
+              <h5 class="card-title" th:text="${image.name}"></h5>
             </div>
           </div>
         </div>

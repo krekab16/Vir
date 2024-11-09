@@ -36,15 +36,15 @@
       </thead>
       <tbody>
       <tr th:each="user : ${users}">
-        <td th:text="${user.email}"></td>
-        <td th:text="${user.password}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.roles}"></td>
         <td>
           <a type="button" class="btn btn-primary me-3"
-             th:href="@{/user/editForm/{id}(id=${user.id})}">
+             th:href="@{/admin/editForm/{id}(id=${user.id})}">
             Módosítás
           </a>
           <a type="button" class="btn btn-danger"
-             th:href="@{/user/delete/{id}(id=${user.id})}">
+             th:href="@{/admin/delete/{id}(id=${user.id})}">
             Törlés
           </a>
 

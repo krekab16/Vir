@@ -2,19 +2,19 @@ package com.example.Beadando.controller;
 
 
 import com.example.Beadando.model.ContactUser;
+import com.example.Beadando.model.Role;
 import com.example.Beadando.repository.RoleRepository;
 import com.example.Beadando.service.ContactUserDetailsService;
-import com.example.Beadando.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class AuthController {
@@ -59,7 +59,18 @@ public class AuthController {
         }
 
         contactUser.setPassword(passwordEncoder.encode(contactUser.getPassword()));
-        contactUser.setRoles(List.of(roleRepository.findByName("USER")));
+        Random random = new Random();
+        List<String> roles = List.of("USER_JPEG", "USER_PNG", "USER_GIF");
+        String randomRole = roles.get(random.nextInt(roles.size()));
+
+
+        Role role = roleRepository.findByName(randomRole);
+        if (role == null) {
+
+            throw new IllegalStateException("Role not found: " + randomRole);
+        }
+
+        contactUser.setRoles(List.of(role));
         contactUser.setEnabled(true);
 
         contactUserDetailsService.registerUser(contactUser);

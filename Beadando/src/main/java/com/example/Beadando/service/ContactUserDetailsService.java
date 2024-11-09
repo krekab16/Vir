@@ -1,20 +1,17 @@
 package com.example.Beadando.service;
 
 import com.example.Beadando.model.ContactUser;
-import com.example.Beadando.model.User;
+import com.example.Beadando.model.Image;
 import com.example.Beadando.repository.ContactUserRepository;
-import com.example.Beadando.repository.RoleRepository;
+import com.example.Beadando.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("contactUserDetailsService")
@@ -23,12 +20,12 @@ import java.util.List;
 public class ContactUserDetailsService implements UserDetailsService {
 
     private final ContactUserRepository contactUserRepository;
-    private final RoleRepository roleRepository;
+    private final ImageRepository imageRepository;
 
     @Autowired
-    public ContactUserDetailsService(ContactUserRepository contactUserRepository, RoleRepository roleRepository) {
+    public ContactUserDetailsService(ContactUserRepository contactUserRepository,ImageRepository imageRepository) {
         this.contactUserRepository = contactUserRepository;
-        this.roleRepository = roleRepository;
+        this.imageRepository = imageRepository;
     }
 
 
@@ -62,6 +59,32 @@ public class ContactUserDetailsService implements UserDetailsService {
         log.info("All users retrieved: " + users);
         return users;
     }
+
+
+    public void deleteUser(Long id){
+        contactUserRepository.deleteById(id);
+    }
+
+    public ContactUser editUser(Long id){
+        return contactUserRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
+    }
+
+
+    public void saveUser(ContactUser contactUser){
+        contactUserRepository.save(contactUser);
+    }
+
+
+
+//
+//    public List<Image> getImagesForUser(ContactUser contactUser) {
+//        if (contactUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_JPG"))) {
+//            return imageRepository.findByFileType("jpg");
+//        } else {
+//            return imageRepository.findAll();
+//        }
+//    }
+
 
 
 
