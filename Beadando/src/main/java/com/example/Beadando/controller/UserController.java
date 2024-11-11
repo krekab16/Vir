@@ -26,14 +26,6 @@ public class UserController {
     }
 
 
-//    @GetMapping
-//    public String getAllImageGallery(Model model) {
-//        List<Image> images = imageService.getAllImages();
-//        model.addAttribute("images", images);
-//        return "imageGallery";
-//    }
-//
-
 
     @GetMapping
     public String getImageGallery(Authentication authentication, Model model) {
@@ -41,6 +33,10 @@ public class UserController {
         model.addAttribute("images", images);
         return "imageGallery";
     }
+
+
+
+
 
 
 

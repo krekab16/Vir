@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -25,6 +26,7 @@ public class ContactUser implements UserDetails {
 
     private String username;
     private String password;
+
     @Email
     private String email;
 
@@ -49,6 +51,12 @@ public class ContactUser implements UserDetails {
             authorities.add(new SimpleGrantedAuthority(role.getName()));
         }
         return authorities;
+    }
+
+    public String getRoleNames() {
+        return roles.stream()
+                .map(Role::getName)
+                .collect(Collectors.joining(", "));
     }
 
     @Override

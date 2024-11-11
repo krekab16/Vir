@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Image {
 
-    // Getterek és setterek
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

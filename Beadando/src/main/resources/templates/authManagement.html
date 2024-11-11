@@ -13,7 +13,7 @@
         <h2 style=" text-shadow: 2px 2px #5F9EA0;">Jogosultság kezelés</h2>
       </div>
       <div class="ms-auto">
-        <a type="button" class="btn btn-outline-primary me-2" title="Kép galléria" th:href="@{/imageGallery}">
+        <a type="button" class="btn btn-outline-primary me-2" title="Kép galléria" th:href="@{/admin/all}">
           Kép galléria
         </a>
         <a type="button" class="btn btn-outline-primary me-2" title="Kijelentkezés" th:href="@{/logout}">
@@ -29,15 +29,17 @@
     <table class="table table-bordered text-center">
       <thead>
       <tr>
-        <th scope="col">Név</th>
-        <th scope="col">Kép formátumok amiket láthat</th>
+        <th scope="col">Felhasználónév</th>
+        <th scope="col">Email cím</th>
+        <th scope="col">Jogosúltság</th>
         <th scope="col">Műveletek</th>
       </tr>
       </thead>
       <tbody>
       <tr th:each="user : ${users}">
         <td th:text="${user.username}"></td>
-        <td th:text="${user.roles}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.roleNames}"></td>
         <td>
           <a type="button" class="btn btn-primary me-3"
              th:href="@{/admin/editForm/{id}(id=${user.id})}">

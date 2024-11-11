@@ -1,9 +1,7 @@
 package com.example.Beadando.service;
 
 import com.example.Beadando.model.ContactUser;
-import com.example.Beadando.model.Image;
 import com.example.Beadando.repository.ContactUserRepository;
-import com.example.Beadando.repository.ImageRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +18,10 @@ import java.util.List;
 public class ContactUserDetailsService implements UserDetailsService {
 
     private final ContactUserRepository contactUserRepository;
-    private final ImageRepository imageRepository;
 
     @Autowired
-    public ContactUserDetailsService(ContactUserRepository contactUserRepository,ImageRepository imageRepository) {
+    public ContactUserDetailsService(ContactUserRepository contactUserRepository) {
         this.contactUserRepository = contactUserRepository;
-        this.imageRepository = imageRepository;
     }
 
 
@@ -65,7 +61,7 @@ public class ContactUserDetailsService implements UserDetailsService {
         contactUserRepository.deleteById(id);
     }
 
-    public ContactUser editUser(Long id){
+    public ContactUser findById(Long id){
         return contactUserRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));
     }
 
@@ -74,16 +70,6 @@ public class ContactUserDetailsService implements UserDetailsService {
         contactUserRepository.save(contactUser);
     }
 
-
-
-//
-//    public List<Image> getImagesForUser(ContactUser contactUser) {
-//        if (contactUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_JPG"))) {
-//            return imageRepository.findByFileType("jpg");
-//        } else {
-//            return imageRepository.findAll();
-//        }
-//    }
 
 
 
